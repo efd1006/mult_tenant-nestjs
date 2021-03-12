@@ -1,10 +1,9 @@
 {
   "name": "nestjs-mult-tenant-test",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "author": "iantorquato2@gmail.com",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
