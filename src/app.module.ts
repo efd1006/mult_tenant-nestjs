@@ -4,16 +4,19 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConnectionOptions } from 'typeorm';
 
 import { TenancyModule } from './tenancy/tenancy.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
     TenancyModule,
+    // Prove as variáveis de ambiente para toda aplicação
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
+      // Nos dá acesso as variáveis de ambiente
       inject: [ConfigService],
       async useFactory(config: ConfigService) {
         return {
-          type: 'postgres',
+          type: 'mysql',
           host: config.get('DB_HOST'),
           username: config.get('DB_USER'),
           password: config.get('DB_PASSWORD'),
@@ -24,6 +27,7 @@ import { TenancyModule } from './tenancy/tenancy.module';
         } as ConnectionOptions;
       },
     }),
+    UserModule,
   ],
   controllers: [],
   providers: [],
